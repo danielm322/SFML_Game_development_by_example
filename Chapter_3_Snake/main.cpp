@@ -5,6 +5,7 @@
 #include "Game.h"
 int main(int argc, char* argv[]){
     // Program entry point.
+    srand((int)time(nullptr));
     Game game; // Creating our game object.
     while(!game.GetWindow()->IsDone()){
         // Game loop.

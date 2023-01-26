@@ -1,7 +1,6 @@
 //
 // Created by daniel on 26/01/23.
 //
-
 #include "Snake.h"
 
 Snake::Snake(int l_blockSize){
@@ -17,7 +16,7 @@ void Snake::Reset(){
     m_snakeBody.push_back(SnakeSegment(5,6));
     m_snakeBody.push_back(SnakeSegment(5,5));
     SetDirection(Direction::None); // Start off still.
-    m_speed = 15;
+    m_speed = 12;
     m_lives = 3;
     m_score = 0;
     m_lost = false;
@@ -120,7 +119,11 @@ void Snake::Cut(int l_segments){
         m_snakeBody.pop_back();
     }
     --m_lives;
-    if (!m_lives){ Lose(); return; }
+    if (!m_lives)
+    {
+        Lose();
+        return;
+    }
 }
 
 void Snake::Render(sf::RenderWindow& l_window){

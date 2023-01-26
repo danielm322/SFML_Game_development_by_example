@@ -6,6 +6,7 @@
 #define SFML_GAME_DEVELOPMENT_BY_EXAMPLE_GAME_H
 #include "World.h"
 #include "Window.h"
+#include "Textbox.h"
 
 class Game {
 public:
@@ -25,8 +26,11 @@ private:
     Window m_window;
     World m_world;
     Snake m_snake;
+    Textbox m_textbox;
     sf::Clock m_clock;
     float m_elapsed;
+    int m_current_lives;
+    int m_current_score;
 };
 
 

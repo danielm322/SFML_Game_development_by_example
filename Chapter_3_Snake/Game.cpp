@@ -9,6 +9,10 @@ Game::Game(): m_window("Snake", sf::Vector2u(800, 600)),
 {
     m_clock.restart();
     m_elapsed = 0.0f;
+    m_textbox.Setup(5, 14, 350, sf::Vector2f(225,0));
+    m_textbox.Add("Seeded random number generator with: " + std::to_string(time(NULL)));
+    m_current_lives = m_snake.GetLives();
+    m_current_score = m_snake.GetScore();
 }
 
 Game::~Game(){}
@@ -40,8 +44,21 @@ void Game::Update(){
         m_snake.Tick();
         m_world.Update(m_snake);
         m_elapsed -= timeStep;
+        if (m_current_lives > m_snake.GetLives())
+        {
+            m_textbox.Add("Now you have: " + std::to_string(m_snake.GetLives()) + " lives");
+            m_current_lives = m_snake.GetLives();
+        }
+        if (m_current_score < m_snake.GetScore())
+        {
+            m_textbox.Add("You ate an apple, score: " + std::to_string(m_snake.GetScore()));
+            m_current_score = m_snake.GetScore();
+        }
         if (m_snake.HasLost()) {
+            m_textbox.Add("GAME OVER! Score: "
+                          + std::to_string((long long)m_snake.GetScore()));
             m_snake.Reset();
+//            m_textbox.Add();
         }
     }
 }
@@ -51,6 +68,7 @@ void Game::Render(){
     // Render here.
     m_world.Render(*m_window.GetRenderWindow());
     m_snake.Render(*m_window.GetRenderWindow());
+    m_textbox.Render(*m_window.GetRenderWindow());
     m_window.EndDraw();
 }
 
