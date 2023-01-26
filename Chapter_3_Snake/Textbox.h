@@ -1,0 +1,14 @@
+//
+// Created by daniel on 26/01/23.
+//
+
+#ifndef SFML_GAME_DEVELOPMENT_BY_EXAMPLE_TEXTBOX_H
+#define SFML_GAME_DEVELOPMENT_BY_EXAMPLE_TEXTBOX_H
+
+
+class Textbox {
+
+};
+
+
+#endif //SFML_GAME_DEVELOPMENT_BY_EXAMPLE_TEXTBOX_H
