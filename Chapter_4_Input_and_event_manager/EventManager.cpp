@@ -138,6 +138,10 @@ void EventManager::LoadBindings(){
         while (!keystream.eof()){
             std::string keyval;
             keystream >> keyval;
+            if(keystream.fail()) {
+                keystream.clear();
+                break;
+            }
             int start = 0;
             int end = keyval.find(delimiter);
             if (end == std::string::npos){

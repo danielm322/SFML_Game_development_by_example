@@ -15,12 +15,12 @@ void Game::MoveSprite(EventDetails* l_details){
 
 Game::Game(): m_window("Chapter 4", sf::Vector2u(800,600)){
     // Setting up class members.
-    m_clock.restart();
+//    m_clock.restart();
     m_mushroomTexture.loadFromFile("Mushroom.png");
     m_mushroom.setTexture(m_mushroomTexture);
     m_mushroom.setOrigin(m_mushroomTexture.getSize().x / 2, m_mushroomTexture.getSize().y / 2);
     m_mushroom.setPosition(0,0);
-//    m_increment = sf::Vector2i(400,400); // 400px a second.
+    m_increment = sf::Vector2i(400,400); // 400px a second.
     m_window.GetEventManager()->AddCallback("Move",
                                              &Game::MoveSprite,this);
 }
@@ -29,29 +29,29 @@ Game::~Game(){}
 
 void Game::Update(){
     m_window.Update(); // Update window events.
-//    MoveMushroom();
+    MoveMushroom();
 }
 
-//void Game::MoveMushroom(){
-//    sf::Vector2u l_windSize = m_window.GetWindowSize();
-//    sf::Vector2u l_textSize = m_mushroomTexture.getSize();
-//    if((m_mushroom.getPosition().x > l_windSize.x - l_textSize.x
-//        && m_increment.x> 0) ||
-//       (m_mushroom.getPosition().x < 0 && m_increment.x< 0))
-//    {
-//        m_increment.x = -m_increment.x;
-//    }
-//    if((m_mushroom.getPosition().y > l_windSize.y - l_textSize.y
-//        && m_increment.y> 0) ||
-//       (m_mushroom.getPosition().y < 0 &&m_increment.y< 0))
-//    {
-//        m_increment.y = -m_increment.y;
-//    }
-//    float fElapsed = m_elapsed.asSeconds();
-//
-//    m_mushroom.setPosition(m_mushroom.getPosition().x + (m_increment.x * fElapsed),
-//                           m_mushroom.getPosition().y + (m_increment.y * fElapsed));
-//}
+void Game::MoveMushroom(){
+    sf::Vector2u l_windSize = m_window.GetWindowSize();
+    sf::Vector2u l_textSize = m_mushroomTexture.getSize();
+    if((m_mushroom.getPosition().x > l_windSize.x - l_textSize.x
+        && m_increment.x> 0) ||
+       (m_mushroom.getPosition().x < 0 && m_increment.x< 0))
+    {
+        m_increment.x = -m_increment.x;
+    }
+    if((m_mushroom.getPosition().y > l_windSize.y - l_textSize.y
+        && m_increment.y> 0) ||
+       (m_mushroom.getPosition().y < 0 &&m_increment.y< 0))
+    {
+        m_increment.y = -m_increment.y;
+    }
+    float fElapsed = m_elapsed.asSeconds();
+
+    m_mushroom.setPosition(m_mushroom.getPosition().x + (m_increment.x * fElapsed),
+                           m_mushroom.getPosition().y + (m_increment.y * fElapsed));
+}
 
 void Game::Render(){
     m_window.BeginDraw(); // Clear.
@@ -65,6 +65,6 @@ Window* Game::GetWindow(){ return &m_window; }
 //    // Input handling.
 //}
 
-sf::Time Game::GetElapsed(){ return m_clock.getElapsedTime(); }
-void Game::RestartClock(){ m_clock.restart(); }
+sf::Time Game::GetElapsed(){ return m_elapsed; }
+void Game::RestartClock(){ m_elapsed = m_clock.restart(); }
 

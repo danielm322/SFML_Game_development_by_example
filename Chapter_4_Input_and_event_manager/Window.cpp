@@ -25,6 +25,8 @@ void Window::Setup(const std::string& l_title,
                                &Window::ToggleFullscreen,this);
     m_eventManager.AddCallback("Window_close",
                                &Window::Close,this);
+    m_eventManager.AddCallback("Esc_window_close",
+                               &Window::Close,this);
     Create();
 }
 
