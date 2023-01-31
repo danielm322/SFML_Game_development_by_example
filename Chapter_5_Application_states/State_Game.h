@@ -19,6 +19,7 @@ public:
     void Deactivate();
 
     void Update(const sf::Time& l_time);
+    void MoveSprite(EventDetails* l_details);
     void Draw();
 
     void MainMenu(EventDetails* l_details);

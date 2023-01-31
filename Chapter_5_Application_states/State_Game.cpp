@@ -21,6 +21,8 @@ void State_Game::OnCreate(){
                        &State_Game::MainMenu,this);
     evMgr->AddCallback(StateType::Game,"Key_P",
                        &State_Game::Pause,this);
+    evMgr->AddCallback(StateType::Game, "Move",
+                       &State_Game::MoveSprite, this);
 }
 
 void State_Game::OnDestroy(){
@@ -28,6 +30,7 @@ void State_Game::OnDestroy(){
             GetContext()->m_eventManager;
     evMgr->RemoveCallback(StateType::Game,"Key_Escape");
     evMgr->RemoveCallback(StateType::Game,"Key_P");
+    evMgr->RemoveCallback(StateType::Game,"Move");
 }
 
 void State_Game::Update(const sf::Time& l_time){
@@ -50,6 +53,15 @@ void State_Game::Update(const sf::Time& l_time){
                          (m_increment.x * l_time.asSeconds()),
                          m_sprite.getPosition().y +
                          (m_increment.y * l_time.asSeconds()));
+}
+
+void State_Game::MoveSprite(EventDetails* l_details){
+    sf::Vector2i mousepos = m_stateMgr->GetContext()->m_wind->GetEventManager()->GetMousePos(
+            m_stateMgr->GetContext()->m_wind->GetRenderWindow());
+    m_sprite.setPosition(mousepos.x, mousepos.y);
+//    std::cout << "Moving sprite to: "
+//              << mousepos.x << ":"
+//              << mousepos.y << std::endl;
 }
 
 void State_Game::Draw(){
