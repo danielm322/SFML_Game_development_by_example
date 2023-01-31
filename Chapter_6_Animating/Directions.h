@@ -1,0 +1,10 @@
+//
+// Created by daniel on 31/01/23.
+//
+
+#ifndef SFML_GAME_DEVELOPMENT_BY_EXAMPLE_DIRECTIONS_H
+#define SFML_GAME_DEVELOPMENT_BY_EXAMPLE_DIRECTIONS_H
+
+enum class Direction{ Right = 0, Left };
+
+#endif //SFML_GAME_DEVELOPMENT_BY_EXAMPLE_DIRECTIONS_H
